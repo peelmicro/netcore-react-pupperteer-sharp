@@ -1,0 +1,5 @@
+# Visual Studio cache/options directory
+.vs/
+/NetcoreReact.IntegrationTests/bin
+/NetcoreReact.IntegrationTests/obj
+/TempCode
