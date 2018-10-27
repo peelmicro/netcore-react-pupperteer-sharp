@@ -62,13 +62,13 @@ namespace NetcoreReact.NUnitTests
             await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
             Console.WriteLine("Before Launching Browser");
 
-            // Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
+            Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
         } 
         [TearDown]
         public async Task LoaderTearDown() 
         { 
             TestServer.Dispose();
-//            await Browser.CloseAsync();
+            await Browser.CloseAsync();
             await _webHost.StopAsync();
         }        
     }
