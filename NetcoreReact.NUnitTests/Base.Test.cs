@@ -11,15 +11,17 @@ namespace NetcoreReact.NUnitTests
         protected Page Page { get; private set; }
 
         [SetUp]
-        public async Task BaseSetup()
+//        public async Task BaseSetup()
+        public void BaseSetup()
         {
             // Page = await Browser.NewPageAsync();
             // await Page.GoToAsync(Url);  
         } 
         [TearDown]
-        public async Task BaseTearDown() 
+        // public async Task BaseTearDown() 
+        public void BaseTearDown() 
         { 
-           await Page.CloseAsync();
+        //    await Page.CloseAsync();
         }
 
 		#region protected help methods
