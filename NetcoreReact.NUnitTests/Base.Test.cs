@@ -1,48 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using PuppeteerSharp;
-using Microsoft.AspNetCore.TestHost;
-using System.Net.Http;
-using Xunit;
-using Xunit.Abstractions;
 
-namespace NetcoreReact.IntegrationTests
+namespace NetcoreReact.NUnitTests
 {
-    [Collection("Loader collection")]
-    public class BaseTest:  IDisposable
+    public class BaseTest : LoaderTest
     {
-        protected Browser Browser { get; set; }
         protected Page Page { get; private set; }
-        protected TestServer TestServer { get; private set; }
-        protected HttpClient HttpClient { get; private set; }
-        private readonly LoaderFixture _fixture;
-        private readonly ITestOutputHelper _output;
 
-        public BaseTest(LoaderFixture fixture, ITestOutputHelper output)
-        {
-            _fixture = fixture;
-            _output = output;
-            Browser = _fixture.Browser;
-            TestServer = _fixture.TestServer;
-            HttpClient = _fixture.HttpClient;            
-            Task.Run(InitializeAsync).Wait();
-        }
-
-        public void Dispose()
-        {
-            Task.Run(DisposeAsync).Wait();
-        }
-        public async Task InitializeAsync()
+        [SetUp]
+        public async Task BaseSetup()
         {
             Page = await Browser.NewPageAsync();
-            await Page.GoToAsync(_fixture.Url);   
-        }
-
-        public async Task DisposeAsync()
-        {
-            await Browser.CloseAsync();
-            await Page.CloseAsync();
+            await Page.GoToAsync(Url);  
+        } 
+        [TearDown]
+        public async Task BaseTearDown() 
+        { 
+           await Page.CloseAsync();
         }
 
 		#region protected help methods
@@ -71,7 +48,6 @@ namespace NetcoreReact.IntegrationTests
             }
             return null;
         }
-
         protected async Task<dynamic> Get(params object[] args)
         {
             var result = await Page.EvaluateFunctionAsync(@"
@@ -132,8 +108,6 @@ namespace NetcoreReact.IntegrationTests
 
             return results;
         }
-        #endregion
-
- 
+        #endregion 
     }
 }

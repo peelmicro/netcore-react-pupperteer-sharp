@@ -11,11 +11,11 @@ namespace NetcoreReact.IntegrationTests
         {
         }
 
-        // [Fact]
-        // public async void TheHeaderHasTheCorrectText() {
-        //     var text = await GetContentOf("#root h1");
-        //     Assert.Equal("Hello, world!", text);
-        // }
+        [Fact]
+        public async void TheHeaderHasTheCorrectText() {
+            var text = await GetContentOf("#root h1");
+            Assert.Equal("Hello, world!", text);
+        }
 
     }
 }

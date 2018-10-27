@@ -5,5 +5,5 @@ dotnet: 2.1
 script:
  - cd NetcoreReact
  - dotnet publish
- - cd ../NetcoreReact.IntegrationTests/
+ - cd ../NetcoreReact.NUnitTests/
  - dotnet test 

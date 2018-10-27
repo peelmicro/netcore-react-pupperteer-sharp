@@ -2,4 +2,7 @@
 .vs/
 /NetcoreReact.IntegrationTests/bin
 /NetcoreReact.IntegrationTests/obj
+/NetcoreReact.NUnitTests/bin
+/NetcoreReact.NUnitTests/obj
 /TempCode
+/NetcoreReact.sln.DotSettings.user
