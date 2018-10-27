@@ -17,6 +17,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace NetcoreReact.IntegrationTests
 {

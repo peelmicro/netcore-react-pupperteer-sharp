@@ -1,5 +1,6 @@
 
 using Xunit;
+using Xunit.Sdk;
 
 namespace NetcoreReact.IntegrationTests
 {
