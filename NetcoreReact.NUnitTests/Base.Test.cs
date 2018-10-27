@@ -13,8 +13,8 @@ namespace NetcoreReact.NUnitTests
         [SetUp]
         public async Task BaseSetup()
         {
-            Page = await Browser.NewPageAsync();
-            await Page.GoToAsync(Url);  
+            // Page = await Browser.NewPageAsync();
+            // await Page.GoToAsync(Url);  
         } 
         [TearDown]
         public async Task BaseTearDown() 

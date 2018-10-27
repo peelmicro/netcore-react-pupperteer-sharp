@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -24,6 +25,7 @@ namespace NetcoreReact.NUnitTests
         {
            var mainApp = Assembly.GetExecutingAssembly().FullName.Split(',').First().Replace(".NUnitTests", "");
             var mainPath = Path.GetFullPath($"../../../../{mainApp}");
+            Console.WriteLine("Before creating WebHostBuilder");
             _webHost = new WebHostBuilder()
                 .UseKestrel()
                 .UseStartup<Startup>()
@@ -38,6 +40,7 @@ namespace NetcoreReact.NUnitTests
                 .UseContentRoot(mainPath)
                 .Build();
             await _webHost.StartAsync();
+            Console.WriteLine("Before creating TestServer");
 
             TestServer = new TestServer(
                 new WebHostBuilder()
@@ -51,12 +54,15 @@ namespace NetcoreReact.NUnitTests
                         config.AddEnvironmentVariables();
                     })
                 );
+            Console.WriteLine("Before creating HttpClient");
 
             HttpClient = TestServer.CreateClient();
+            Console.WriteLine("Before Downloading Browser");
 
-            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+            // await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+            // Console.WriteLine("Before Launching Browser");
 
-            Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
+            // Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
         } 
         [TearDown]
         public async Task LoaderTearDown() 

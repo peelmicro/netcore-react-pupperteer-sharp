@@ -6,3 +6,5 @@
 /NetcoreReact.NUnitTests/obj
 /TempCode
 /NetcoreReact.sln.DotSettings.user
+/NetcoreReact.IntegrationTests/TestResults
+/NetcoreReact.NUnitTests/TestResults
