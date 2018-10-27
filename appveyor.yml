@@ -16,8 +16,8 @@ after_build:
 artifacts:
 clone_depth: 1
 test_script:
-  - cmd: cd NetcoreReact.NUnitTests
-  - cmd: dotnet test
+  - cmd: dotnet test NetCoreReactReduxAdvanced.IntegrationTest
+  - cmd: dotnet test NetcoreReact.NUnitTests
 on_finish :
   # any cleanup in here
 deploy: off
