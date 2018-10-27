@@ -19,7 +19,7 @@ namespace NetcoreReact.IntegrationTests
         private readonly IMessageSink _messageSink;
 
         public string Url { get; set; } = "http://localhost:5000/";
-        public Browser Browser { get; set; }
+        // public Browser Browser { get; set; }
         public TestServer TestServer { get; private set; }
         public HttpClient HttpClient { get; private set; }
 
@@ -36,7 +36,7 @@ namespace NetcoreReact.IntegrationTests
         public async Task DisposeAsync()
         {
             TestServer.Dispose();
-            await Browser.CloseAsync();
+            // await Browser.CloseAsync();
             await _webHost.StopAsync();
         }
         private async Task SetupAsync()
@@ -82,11 +82,11 @@ namespace NetcoreReact.IntegrationTests
             HttpClient = TestServer.CreateClient();
             _messageSink.OnMessage(new Xunit.Sdk.DiagnosticMessage("After creating HttpClient"));
 
-            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
-            _messageSink.OnMessage(new Xunit.Sdk.DiagnosticMessage("After downloading Browser with DownloadAsync"));
+            // await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+            // _messageSink.OnMessage(new Xunit.Sdk.DiagnosticMessage("After downloading Browser with DownloadAsync"));
 
-            Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
-            _messageSink.OnMessage(new Xunit.Sdk.DiagnosticMessage("launching Browser"));
+            // Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
+            // _messageSink.OnMessage(new Xunit.Sdk.DiagnosticMessage("launching Browser"));
 
         }
 

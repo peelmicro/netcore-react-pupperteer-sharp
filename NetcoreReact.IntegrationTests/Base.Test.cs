@@ -1,21 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using PuppeteerSharp;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.Extensions.Configuration;
 using System.Net.Http;
-using Microsoft.AspNetCore.Identity;
-using System.Reflection;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -28,12 +16,14 @@ namespace NetcoreReact.IntegrationTests
         protected Page Page { get; private set; }
         protected TestServer TestServer { get; private set; }
         protected HttpClient HttpClient { get; private set; }
-        LoaderFixture _fixture;
+        private readonly LoaderFixture _fixture;
+        private readonly ITestOutputHelper _output;
 
-        public BaseTest(LoaderFixture fixture)
+        public BaseTest(LoaderFixture fixture, ITestOutputHelper output)
         {
             _fixture = fixture;
-            Browser = _fixture.Browser;
+            _output = output;
+            // Browser = _fixture.Browser;
             TestServer = _fixture.TestServer;
             HttpClient = _fixture.HttpClient;            
             Task.Run(InitializeAsync).Wait();
@@ -45,12 +35,19 @@ namespace NetcoreReact.IntegrationTests
         }
         public async Task InitializeAsync()
         {
+            _output.WriteLine("Before downloading Browser with DownloadAsync");
+            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+            _output.WriteLine("After downloading Browser with DownloadAsync");
+
+            Browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
+            _output.WriteLine("launching Browser");
             Page = await Browser.NewPageAsync();
             await Page.GoToAsync(_fixture.Url);   
         }
 
         public async Task DisposeAsync()
         {
+            await Browser.CloseAsync();
             await Page.CloseAsync();
         }
 
