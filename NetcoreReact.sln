@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetcoreReact", "NetcoreReac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetcoreReact.IntegrationTests", "NetcoreReact.IntegrationTests\NetcoreReact.IntegrationTests.csproj", "{991397DE-444F-4D3D-9909-D195FDD2C31D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreReact.NUnitTests", "NetCoreReact.NUnitTests\NetCoreReact.NUnitTests.csproj", "{7F1E5B06-29D8-4BC4-BE1D-BD5F31574D5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetcoreReact.NUnitTests", "NetcoreReact.NUnitTests\NetcoreReact.NUnitTests.csproj", "{7F1E5B06-29D8-4BC4-BE1D-BD5F31574D5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
