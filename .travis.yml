@@ -9,5 +9,5 @@ matrix:
       dotnet: 2.1.300
 script:
  - dotnet publish
- - dotnet test NetCoreReact.IntegrationTests 
- - dotnet test NetCoreReact.NUnitTests 
+ - dotnet test NetcoreReact.IntegrationTests 
+ - dotnet test NetcoreReact.NUnitTests 
